@@ -52,6 +52,7 @@
     "typescript": "5.4.2",
     "vite": "6.2.2",
     "vite-plugin-svg-icons": "2.0.1",
+    "vite-plugin-vue-devtools": "^7.7.6",
     "vite-plugin-vue-setup-extend": "0.4.0",
     "vue-tsc": "2.2.8"
   }
