@@ -4,7 +4,6 @@ import vue from '@vitejs/plugin-vue'
 
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
-import VueDevTools from 'vite-plugin-vue-devtools'
 
 // 参考：https://cn.vitejs.dev/config/
 export default defineConfig({
@@ -22,8 +21,7 @@ export default defineConfig({
 		createSvgIconsPlugin({
 			iconDirs: [resolve(__dirname, 'src/icons/svg')],
 			symbolId: 'icon-[dir]-[name]'
-		}),
-		VueDevTools()
+		})
 	],
 	server: {
 		host: '0.0.0.0',
