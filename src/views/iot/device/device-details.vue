@@ -4,7 +4,7 @@
 			<el-tab-pane v-auth="'iot:device:info'" label="设备详情" name="info">
 				<DeviceInfo :device-id="props.deviceId" />
 			</el-tab-pane>
-			<el-tab-pane v-auth="'iot:device:info'" label="服务" name="service">
+			<!-- <el-tab-pane v-auth="'iot:device:info'" label="服务" name="service">
 				<DeviceService :device-id="props.deviceId" />
 			</el-tab-pane>
 			<el-tab-pane v-auth="'iot:device:info'" label="事件" name="event">
@@ -12,7 +12,7 @@
 			</el-tab-pane>
 			<el-tab-pane v-auth="'iot:device:update'" label="调试" name="debug">
 				<DeviceDebug :device-id="props.deviceId" :protocol-type="props.protocolType" />
-			</el-tab-pane>
+			</el-tab-pane> -->
 		</el-tabs>
 	</el-card>
 </template>
