@@ -1,8 +1,10 @@
 <template>
-	<el-dialog v-model="visible" :title="!dataForm.id ? '新增' : '修改'" :close-on-click-modal="false" draggable>
+	<el-dialog v-model="visible" :title="!dataForm.id ? '新增' : '修改'" :close-on-click-modal="false" draggable width="80%">
 		<el-form ref="dataFormRef" :model="dataForm" :rules="dataRules" :label-width="100">
 			<el-form-item label="内容" prop="content">
-				<el-input v-model="dataForm.content" placeholder="内容"></el-input>
+				<div class="editor-container">
+					<ma-editor v-model="dataForm.content" class="fixed-size-editor" placeholder="请输入内容..." />
+				</div>
 			</el-form-item>
 			<el-form-item label="封面" prop="cover">
 				<ma-upload-image v-model:image-url="dataForm.cover" :drag="true" border-radius="4px" @success="handleCoverSuccess">
@@ -127,3 +129,25 @@ defineExpose({
 	init
 })
 </script>
+
+<style scoped>
+/* 编辑器容器限制宽度 */
+.editor-container {
+	width: 600px; /* 固定容器宽度 */
+}
+
+/* 强制编辑器样式 */
+.fixed-size-editor {
+	width: 600px !important;
+	height: 400px !important;
+	border: 1px solid #dcdfe6;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+/* 重置wangEditor默认样式 */
+:deep(.w-e-text-container) {
+	width: 600px !important;
+	height: 400px !important;
+}
+</style>
