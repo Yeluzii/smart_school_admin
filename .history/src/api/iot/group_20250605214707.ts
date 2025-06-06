@@ -24,13 +24,13 @@ export const useGroupDeviceSubmitApi = (dataForm: any) => {
 	}
 }
 export const useGroupRoleApi = (id: number) => {
-	return service.get('new/iot/group/role/' + id)
+	return service.get('new/iot/role/device/' + id)
 }
 
 export const useGroupRoleSubmitApi = (dataForm: any) => {
 	if (dataForm.id) {
-		return service.put('new/iot/group/role', dataForm)
+		return service.put('new/iot/role/device', dataForm)
 	} else {
-		return service.post('new/iot/group/role', dataForm)
+		return service.post('new/iot/role/device', dataForm)
 	}
 }

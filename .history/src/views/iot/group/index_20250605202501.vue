@@ -39,7 +39,8 @@
 				<template #default="scope">
 					<el-button type="primary" v-auth="'iot:group:update'" link
 						@click="addOrUpdateHandle(scope.row.id)">修改</el-button>
-					<el-button type="primary" link @click="showAddDeviceHandle(scope.row.id)">详情</el-button>
+					<el-button type="primary" v-auth="'iot:group:device:page'" link
+						@click="addDeviceHandle(scope.row.id)">添加设备</el-button>
 					<el-button type="primary" v-auth="'iot:group:delete'" link
 						@click="deleteBatchHandle(scope.row.id)">删除</el-button>
 				</template>
@@ -53,10 +54,6 @@
 		<!-- 弹窗, 新增 / 修改 -->
 		<add-or-update v-if="addOrUpdateVisible" ref="addOrUpdateRef" v-model:visible="addOrUpdateVisible"
 			@refreshDataList="getDataList"></add-or-update>
-		<el-drawer v-if="addDeviceTitle" v-model="addDeviceVisible" :title="addDeviceTitle" :size="1000"
-			:close-on-press-escape="false">
-			<add-device v-if="addDeviceVisible" :key="'device_' + groupId" :group-id="groupId"></add-device>
-		</el-drawer>
 	</el-card>
 </template>
 
@@ -65,7 +62,7 @@ import { useCrud } from '@/hooks'
 import { reactive, nextTick, ref } from 'vue'
 import { IHooksOptions } from '@/hooks/interface'
 import AddOrUpdate from './add-or-update.vue'
-import addDevice from './add-device.vue'
+
 
 const state: IHooksOptions = reactive({
 	dataListUrl: 'new/iot/group/page',
@@ -76,21 +73,19 @@ const state: IHooksOptions = reactive({
 		info: ''
 	}
 })
-const groupId = ref()
-const addDeviceVisible = ref(false)
-const addDeviceTitle = ref()
+
 const queryRef = ref()
 const addOrUpdateVisible = ref(false)
 const addOrUpdateRef = ref()
+const addDeviceVisible = ref(false)
+const addDeviceRef = ref()
 const addOrUpdateHandle = (id?: number) => {
 	addOrUpdateVisible.value = true
 	nextTick(() => addOrUpdateRef.value.init(id))
 }
-const showAddDeviceHandle = (id?: number) => {
-	console.log('showAddDeviceHandle', id)
-	groupId.value = id
+const addDeviceHandle = (id?: number) => {
 	addDeviceVisible.value = true
-	addDeviceTitle.value = '添加设备'
+	nextTick(() => addDeviceRef.value.init(id))
 }
 
 const { getDataList, selectionChangeHandle, sizeChangeHandle, currentChangeHandle, deleteBatchHandle, reset } = useCrud(state)
