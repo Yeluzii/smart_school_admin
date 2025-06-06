@@ -47,7 +47,7 @@ export const useCrud = (options: IHooksOptions) => {
 		if (!state.dataListUrl) {
 			return
 		}
-		console.log('query', state.dataListUrl)
+
 		state.dataListLoading = true
 
 		service

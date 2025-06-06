@@ -39,7 +39,8 @@
 				<template #default="scope">
 					<el-button type="primary" v-auth="'iot:group:update'" link
 						@click="addOrUpdateHandle(scope.row.id)">修改</el-button>
-					<el-button type="primary" link @click="showAddDeviceHandle(scope.row.id)">详情</el-button>
+					<el-button type="primary" v-auth="'iot:group:device:page'" link
+						@click="showAddDeviceHandle(scope.row.id)">添加设备</el-button>
 					<el-button type="primary" v-auth="'iot:group:delete'" link
 						@click="deleteBatchHandle(scope.row.id)">删除</el-button>
 				</template>
@@ -55,7 +56,7 @@
 			@refreshDataList="getDataList"></add-or-update>
 		<el-drawer v-if="addDeviceTitle" v-model="addDeviceVisible" :title="addDeviceTitle" :size="1000"
 			:close-on-press-escape="false">
-			<add-device v-if="addDeviceVisible" :key="'device_' + groupId" :group-id="groupId"></add-device>
+			<add-device :group-id="groupId"></add-device>
 		</el-drawer>
 	</el-card>
 </template>
@@ -87,7 +88,6 @@ const addOrUpdateHandle = (id?: number) => {
 	nextTick(() => addOrUpdateRef.value.init(id))
 }
 const showAddDeviceHandle = (id?: number) => {
-	console.log('showAddDeviceHandle', id)
 	groupId.value = id
 	addDeviceVisible.value = true
 	addDeviceTitle.value = '添加设备'

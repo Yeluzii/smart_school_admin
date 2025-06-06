@@ -47,7 +47,7 @@ export const useCrud = (options: IHooksOptions) => {
 		if (!state.dataListUrl) {
 			return
 		}
-		console.log('query', state.dataListUrl)
+
 		state.dataListLoading = true
 
 		service
@@ -64,6 +64,7 @@ export const useCrud = (options: IHooksOptions) => {
 				}
 			})
 			.then((res: any) => {
+				console.log(res)
 				state.dataList = state.isPage ? res.data.list : res.data
 				state.total = state.isPage ? res.data.total : 0
 			})

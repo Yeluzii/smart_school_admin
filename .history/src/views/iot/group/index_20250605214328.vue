@@ -55,7 +55,7 @@
 			@refreshDataList="getDataList"></add-or-update>
 		<el-drawer v-if="addDeviceTitle" v-model="addDeviceVisible" :title="addDeviceTitle" :size="1000"
 			:close-on-press-escape="false">
-			<add-device v-if="addDeviceVisible" :key="'device_' + groupId" :group-id="groupId"></add-device>
+			<add-device :group-id="groupId"></add-device>
 		</el-drawer>
 	</el-card>
 </template>
@@ -87,7 +87,6 @@ const addOrUpdateHandle = (id?: number) => {
 	nextTick(() => addOrUpdateRef.value.init(id))
 }
 const showAddDeviceHandle = (id?: number) => {
-	console.log('showAddDeviceHandle', id)
 	groupId.value = id
 	addDeviceVisible.value = true
 	addDeviceTitle.value = '添加设备'

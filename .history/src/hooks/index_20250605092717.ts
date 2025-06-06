@@ -47,7 +47,7 @@ export const useCrud = (options: IHooksOptions) => {
 		if (!state.dataListUrl) {
 			return
 		}
-		console.log('query', state.dataListUrl)
+
 		state.dataListLoading = true
 
 		service
@@ -142,7 +142,7 @@ export const useCrud = (options: IHooksOptions) => {
 					query()
 				})
 			})
-			.catch(() => { })
+			.catch(() => {})
 	}
 
 	const deleteBatchHandle = (key?: number | string) => {
@@ -172,7 +172,7 @@ export const useCrud = (options: IHooksOptions) => {
 					})
 				}
 			})
-			.catch(() => { })
+			.catch(() => {})
 	}
 
 	const downloadHandle = async (url: string, filename?: string, method: string = 'GET'): Promise<any> => {
