@@ -11,3 +11,11 @@ export const useTenantSubmitApi = (dataForm: any) => {
 		return service.post('new/business/tenant', dataForm)
 	}
 }
+
+export const getPackageListApi = (name: string) => {
+	return service.get(`new/business/package/packageList?name=${name}`)
+}
+
+export const updatePasswordApi = (dataForm: any) => {
+	return service.post('new/business/tenant/password', dataForm)
+}

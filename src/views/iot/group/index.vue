@@ -28,33 +28,41 @@
 				<el-button icon="Delete" plain type="danger" @click="deleteBatchHandle()">批量删除</el-button>
 			</el-space>
 		</el-space>
-		<el-table v-loading="state.dataListLoading" :data="state.dataList" border class="layout-table" show-overflow-tooltip
-			@selection-change="selectionChangeHandle">
+		<el-table
+			v-loading="state.dataListLoading"
+			:data="state.dataList"
+			border
+			class="layout-table"
+			show-overflow-tooltip
+			@selection-change="selectionChangeHandle"
+		>
 			<el-table-column type="selection" header-align="center" align="center" width="50"></el-table-column>
 			<el-table-column prop="id" label="id" header-align="center" align="center"></el-table-column>
 			<el-table-column prop="name" label="分组名称" header-align="center" align="center"></el-table-column>
 			<el-table-column prop="tenantId" label="机构" header-align="center" align="center"></el-table-column>
 			<el-table-column prop="info" label="备注" header-align="center" align="center"></el-table-column>
-			<el-table-column label="操作" fixed="right" header-align="center" align="center" width="150">
+			<el-table-column label="操作" fixed="right" header-align="center" align="center" width="200">
 				<template #default="scope">
-					<el-button type="primary" v-auth="'iot:group:update'" link
-						@click="addOrUpdateHandle(scope.row.id)">修改</el-button>
+					<el-button type="primary" v-auth="'iot:group:update'" link @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
 					<el-button type="primary" link @click="showAddDeviceHandle(scope.row.id)">详情</el-button>
-					<el-button type="primary" v-auth="'iot:group:delete'" link
-						@click="deleteBatchHandle(scope.row.id)">删除</el-button>
+					<el-button type="primary" v-auth="'iot:group:delete'" link @click="deleteBatchHandle(scope.row.id)">删除</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
-		<el-pagination :current-page="state.page" :page-sizes="state.pageSizes" :page-size="state.limit" :total="state.total"
-			layout="total, sizes, prev, pager, next, jumper" @size-change="sizeChangeHandle"
-			@current-change="currentChangeHandle">
+		<el-pagination
+			:current-page="state.page"
+			:page-sizes="state.pageSizes"
+			:page-size="state.limit"
+			:total="state.total"
+			layout="total, sizes, prev, pager, next, jumper"
+			@size-change="sizeChangeHandle"
+			@current-change="currentChangeHandle"
+		>
 		</el-pagination>
 
 		<!-- 弹窗, 新增 / 修改 -->
-		<add-or-update v-if="addOrUpdateVisible" ref="addOrUpdateRef" v-model:visible="addOrUpdateVisible"
-			@refreshDataList="getDataList"></add-or-update>
-		<el-drawer v-if="addDeviceTitle" v-model="addDeviceVisible" :title="addDeviceTitle" :size="1000"
-			:close-on-press-escape="false">
+		<add-or-update v-if="addOrUpdateVisible" ref="addOrUpdateRef" v-model:visible="addOrUpdateVisible" @refreshDataList="getDataList"></add-or-update>
+		<el-drawer v-if="addDeviceTitle" v-model="addDeviceVisible" :title="addDeviceTitle" :size="1000" :close-on-press-escape="false">
 			<add-device v-if="addDeviceVisible" :key="'device_' + groupId" :group-id="groupId"></add-device>
 		</el-drawer>
 	</el-card>
