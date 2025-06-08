@@ -7,17 +7,10 @@
 			<el-form-item label="用户名" prop="username">
 				<el-input v-model="dataForm.username" placeholder="用户名"></el-input>
 			</el-form-item>
-			<el-form-item label="密码" prop="password">
-				<el-input v-model="dataForm.password" type="password" show-password placeholder="密码"></el-input>
-			</el-form-item>
-			<el-form-item label="手机号" prop="mobile">
-				<el-input v-model="dataForm.mobile" placeholder="手机号"></el-input>
-			</el-form-item>
 			<el-form-item label="租户套餐" prop="packageId">
-				<el-input v-model="dataForm.packageId" placeholder="租户套餐"></el-input>
-			</el-form-item>
-			<el-form-item label="过期时间" prop="expireTime">
-				<el-input v-model="dataForm.expireTime" placeholder="过期时间"></el-input>
+				<el-select v-model="dataForm.packageId" placeholder="请选择套餐">
+					<el-option v-for="item in packageList" :key="item.id" :label="item.packageName" :value="item.id"></el-option>
+				</el-select>
 			</el-form-item>
 			<el-form-item label="状态" prop="status">
 				<el-radio-group v-model="dataForm.status">
@@ -39,7 +32,7 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus/es'
-import { useTenantApi, useTenantSubmitApi } from '@/api/tenant/tenant'
+import { getPackageListApi, useTenantApi, useTenantSubmitApi } from '@/api/tenant/tenant'
 
 const emit = defineEmits(['refreshDataList'])
 
@@ -64,7 +57,21 @@ const dataForm = reactive({
 	version: ''
 })
 
+const packageList = ref<any[]>([])
+const getPackageList = async () => {
+	try {
+		const res = await getPackageListApi('')
+		if (res.code === 0) {
+			packageList.value = res.data
+		} else {
+			ElMessage.error(res.msg || '获取租户列表失败')
+		}
+	} catch (error) {
+		ElMessage.error('请求租户列表异常')
+	}
+}
 const init = (id?: number) => {
+	getPackageList()
 	if (id) {
 		getTenant(id)
 	}
@@ -83,8 +90,7 @@ const dataRules = ref({
 	mobile: [{ required: true, message: '必填项不能为空', trigger: 'blur' }],
 	packageId: [{ required: true, message: '必填项不能为空', trigger: 'blur' }],
 	expireTime: [{ required: true, message: '必填项不能为空', trigger: 'blur' }],
-	status: [{ required: true, message: '必填项不能为空', trigger: 'blur' }],
-	info: [{ required: true, message: '必填项不能为空', trigger: 'blur' }]
+	status: [{ required: true, message: '必填项不能为空', trigger: 'blur' }]
 })
 
 // 表单提交

@@ -1,5 +1,5 @@
 <template>
-	<el-dialog v-model="visible" :title="!dataForm.id ? '新增' : '修改'" :close-on-click-modal="false" draggable width="80%">
+	<el-dialog v-model="visible" :title="!dataForm.id ? '新增' : '修改'" :close-on-click-modal="false" draggable width="60%">
 		<el-form ref="dataFormRef" :model="dataForm" :rules="dataRules" :label-width="100">
 			<el-form-item label="内容" prop="content">
 				<div class="editor-container">
