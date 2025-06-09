@@ -3,7 +3,7 @@
 		<!-- <el-col :span="5">
 			<ma-data-tree-left url="/sys/org/list" title="机构列表" tree-data @click="handleClick" @manage="treeVisible = true" />
 		</el-col> -->
-		<el-col :span="24">
+		<el-col :span="19">
 			<el-card class="layout-query">
 				<el-form ref="queryRef" :inline="true" :model="state.queryForm">
 					<el-form-item prop="username">
