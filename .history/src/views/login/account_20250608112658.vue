@@ -1,8 +1,10 @@
 <template>
 	<el-form ref="loginFormRef" :model="loginForm" :rules="loginRules" @keyup.enter="onLogin">
-		<el-form-item prop="tenantId">
-			<el-select v-model="loginForm.tenantId" placeholder="请选择租户" style="width: 100%" clearable>
-				<el-option v-for="item in tenantList" :key="item.id" :value="item.id" :label="item.tenantName" />
+		<el-form-item prop="tenantList">
+			<el-select>
+				<el-option v-for="item in tenantList" :key="item.id" :value="item.id" label="学校">
+					{{ item.name }}
+				</el-option>
 			</el-select>
 		</el-form-item>
 		<el-form-item prop="username">
@@ -32,14 +34,13 @@ import { useI18n } from 'vue-i18n'
 import constant from '@/utils/constant'
 import { sm2Encrypt } from '@/utils/smCrypto'
 import cache from '@/utils/cache'
-import { v } from 'vxe-table'
 
 const userStore = useUserStore()
 const router = useRouter()
 const { t } = useI18n()
 const loginFormRef = ref()
 const captchaBase64 = ref()
-const value = ref('')
+
 const loginForm = reactive({
 	tenantId: 0,
 	username: constant.env.PROD ? '' : 'admin',
@@ -91,13 +92,12 @@ const onLogin = () => {
 
 		// 重新封装登录数据
 		const loginData = {
-			tenantId: loginForm.tenantId,
 			username: loginForm.username,
 			password: sm2Encrypt(loginForm.password),
 			key: loginForm.key,
 			captcha: loginForm.captcha
 		}
-		console.log(loginData)
+
 		// 用户登录
 		userStore
 			.accountLoginAction(loginData)

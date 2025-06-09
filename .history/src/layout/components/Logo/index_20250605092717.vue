@@ -1,7 +1,7 @@
 <template>
 	<div v-if="appStore.sidebarOpened" class="sidebar-logo">
 		<el-avatar src="/favicon.ico"></el-avatar>
-		<span class="logo-title"> {{ $t(logoText) }}</span>
+		<span class="logo-title"> {{ $t('app.logoText') }}</span>
 	</div>
 	<div v-else class="sidebar-logo sidebar-logo-expend">
 		<span>{{ $t('app.miniLogoText') }}</span>
@@ -9,14 +9,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 import { useAppStore } from '@/store/modules/app'
-import { useUserStore } from '@/store/modules/user';
 const appStore = useAppStore()
-const userStore = useUserStore();
-const logoText = computed(() => {
-	return userStore.user.roleIdList.includes(1) ? 'app.logoSuperAdminText' : 'app.logoTenantAdminText'
-})
 </script>
 
 <style lang="scss" scoped>
@@ -39,12 +33,10 @@ const logoText = computed(() => {
 		width: 25px;
 		height: 25px;
 	}
-
 	.logo-title {
 		margin-left: 10px;
 	}
 }
-
 .sidebar-logo-expend {
 	width: 100% !important;
 }

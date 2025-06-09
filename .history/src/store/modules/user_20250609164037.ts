@@ -18,7 +18,7 @@ export const useUserStore = defineStore('userStore', {
 			avatar: '',
 			orgName: '',
 			tenantId: 1,
-			roleIdList: [0],
+			roleIdList: [],
 			postNameList: [],
 			createTime: ''
 		},

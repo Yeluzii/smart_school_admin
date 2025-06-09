@@ -19,8 +19,7 @@ export default {
 		title: 'Maku Admin',
 		description:
 			'The backstage management template developed based on Vue3, TypeScript, Element Plus, Vue Router, Pinia, Axios, i18n、Vite, etc., has a very low threshold for use, adopts the MIT open source protocol, is completely free and open source, and can be used for commercial projects and other scenarios for free! ',
-		logoSuperAdminText: 'Operation Platform',
-		logoTenantAdminText: 'IoT Platform',
+		logoText: 'Maku Admin',
 		miniLogoText: 'MAKU',
 		username: 'Username',
 		password: 'Password',

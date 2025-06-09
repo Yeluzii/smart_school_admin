@@ -1,7 +1,7 @@
 <template>
 	<el-form ref="loginFormRef" :model="loginForm" :rules="loginRules" @keyup.enter="onLogin">
 		<el-form-item prop="tenantId">
-			<el-select v-model="loginForm.tenantId" placeholder="请选择租户" style="width: 100%" clearable>
+			<el-select v-model="value" placeholder="请选择租户" style="width: 100%" clearable>
 				<el-option v-for="item in tenantList" :key="item.id" :value="item.id" :label="item.tenantName" />
 			</el-select>
 		</el-form-item>
