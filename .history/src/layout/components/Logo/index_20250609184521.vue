@@ -1,7 +1,7 @@
 <template>
 	<div v-if="appStore.sidebarOpened" class="sidebar-logo">
 		<el-avatar src="/favicon.ico"></el-avatar>
-		<span class="logo-title"> {{ $t(logoText) }}</span>
+		<span class="logo-title"> {{ $t('app.logoText') }}</span>
 	</div>
 	<div v-else class="sidebar-logo sidebar-logo-expend">
 		<span>{{ $t('app.miniLogoText') }}</span>
@@ -14,8 +14,8 @@ import { useAppStore } from '@/store/modules/app'
 import { useUserStore } from '@/store/modules/user';
 const appStore = useAppStore()
 const userStore = useUserStore();
-const logoText = computed(() => {
-	return userStore.user.roleIdList.includes(1) ? 'app.logoSuperAdminText' : 'app.logoTenantAdminText'
+const isSuperAdmin = computed(() => {
+	return userStore.user.roleIdList.includes(1)
 })
 </script>
 

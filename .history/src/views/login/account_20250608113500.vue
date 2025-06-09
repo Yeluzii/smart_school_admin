@@ -1,7 +1,7 @@
 <template>
 	<el-form ref="loginFormRef" :model="loginForm" :rules="loginRules" @keyup.enter="onLogin">
-		<el-form-item prop="tenantId">
-			<el-select v-model="loginForm.tenantId" placeholder="请选择租户" style="width: 100%" clearable>
+		<el-form-item prop="tenantList">
+			<el-select v-model="value" placeholder="请选择租户" style="width: 100%" clearable>
 				<el-option v-for="item in tenantList" :key="item.id" :value="item.id" :label="item.tenantName" />
 			</el-select>
 		</el-form-item>
@@ -91,13 +91,12 @@ const onLogin = () => {
 
 		// 重新封装登录数据
 		const loginData = {
-			tenantId: loginForm.tenantId,
 			username: loginForm.username,
 			password: sm2Encrypt(loginForm.password),
 			key: loginForm.key,
 			captcha: loginForm.captcha
 		}
-		console.log(loginData)
+
 		// 用户登录
 		userStore
 			.accountLoginAction(loginData)

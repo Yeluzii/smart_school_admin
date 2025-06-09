@@ -3,9 +3,7 @@ import service from '@/utils/request'
 export const useCaptchaEnabledApi = () => {
 	return service.get('/sys/auth/captcha/enabled')
 }
-export const useTenantListApi = () => {
-	return service.get('/sys/tenant/list')
-}
+
 export const useCaptchaApi = () => {
 	return service.get('/sys/auth/captcha')
 }

@@ -19,8 +19,7 @@ export default {
 		title: 'Maku Admin',
 		description:
 			'基于Vue3、TypeScript、Element Plus、Vue Router、Pinia、Axios、i18n、Vite等开发的后台管理，使用门槛极低，采用MIT开源协议，完全免费开源且终生免费，可免费用于商业项目等场景！',
-		logoSuperAdminText: '智慧校园运营平台',
-		logoTenantAdminText: '智慧校园物联平台',
+		logoText: 'Maku Admin',
 		miniLogoText: 'MAKU',
 		username: '用户名',
 		password: '密码',

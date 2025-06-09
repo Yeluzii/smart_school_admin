@@ -1,16 +1,10 @@
 <template>
 	<el-form ref="loginFormRef" :model="loginForm" :rules="loginRules" @keyup.enter="onLogin">
-		<el-form-item prop="tenantId">
-			<el-select v-model="loginForm.tenantId" placeholder="请选择租户" style="width: 100%" clearable>
-				<el-option v-for="item in tenantList" :key="item.id" :value="item.id" :label="item.tenantName" />
-			</el-select>
-		</el-form-item>
 		<el-form-item prop="username">
 			<el-input v-model="loginForm.username" :prefix-icon="User" :placeholder="$t('app.username')"></el-input>
 		</el-form-item>
 		<el-form-item prop="password">
-			<el-input v-model="loginForm.password" :prefix-icon="Lock" show-password
-				:placeholder="$t('app.password')"></el-input>
+			<el-input v-model="loginForm.password" :prefix-icon="Lock" show-password :placeholder="$t('app.password')"></el-input>
 		</el-form-item>
 		<el-form-item v-if="captchaVisible" prop="captcha" class="login-captcha">
 			<el-input v-model="loginForm.captcha" :placeholder="$t('app.captcha')" :prefix-icon="Key"></el-input>
@@ -26,22 +20,20 @@
 import { ref, reactive, onMounted } from 'vue'
 import { User, Lock, Key } from '@element-plus/icons-vue'
 import { useUserStore } from '@/store/modules/user'
-import { useCaptchaApi, useCaptchaEnabledApi, useTenantListApi } from '@/api/auth'
+import { useCaptchaApi, useCaptchaEnabledApi } from '@/api/auth'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import constant from '@/utils/constant'
 import { sm2Encrypt } from '@/utils/smCrypto'
 import cache from '@/utils/cache'
-import { v } from 'vxe-table'
 
 const userStore = useUserStore()
 const router = useRouter()
 const { t } = useI18n()
 const loginFormRef = ref()
 const captchaBase64 = ref()
-const value = ref('')
+
 const loginForm = reactive({
-	tenantId: 0,
 	username: constant.env.PROD ? '' : 'admin',
 	password: constant.env.PROD ? '' : 'admin',
 	key: '',
@@ -56,15 +48,11 @@ const loginRules = ref({
 
 // 是否显示验证码
 const captchaVisible = ref(false)
-const tenantList = ref([])
+
 onMounted(() => {
-	onTenantList()
 	onCaptchaEnabled()
 })
-const onTenantList = async () => {
-	const { data } = await useTenantListApi()
-	tenantList.value = data
-}
+
 const onCaptchaEnabled = async () => {
 	const { data } = await useCaptchaEnabledApi()
 	captchaVisible.value = data
@@ -91,13 +79,12 @@ const onLogin = () => {
 
 		// 重新封装登录数据
 		const loginData = {
-			tenantId: loginForm.tenantId,
 			username: loginForm.username,
 			password: sm2Encrypt(loginForm.password),
 			key: loginForm.key,
 			captcha: loginForm.captcha
 		}
-		console.log(loginData)
+
 		// 用户登录
 		userStore
 			.accountLoginAction(loginData)
@@ -119,14 +106,12 @@ const onLogin = () => {
 		width: 200px;
 	}
 }
-
 .login-captcha img {
 	width: 150px;
 	height: 40px;
 	margin: 5px 0 0 10px;
 	cursor: pointer;
 }
-
 .login-button {
 	:deep(.el-button--primary) {
 		margin-top: 10px;

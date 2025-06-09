@@ -4,7 +4,7 @@ export const useCaptchaEnabledApi = () => {
 	return service.get('/sys/auth/captcha/enabled')
 }
 export const useTenantListApi = () => {
-	return service.get('/sys/tenant/list')
+	return service.get('/sys/auth/tenant/list')
 }
 export const useCaptchaApi = () => {
 	return service.get('/sys/auth/captcha')
