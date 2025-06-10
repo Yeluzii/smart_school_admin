@@ -137,7 +137,7 @@ import { useCrud } from '@/hooks'
 import { reactive, nextTick, ref } from 'vue'
 import { IHooksOptions } from '@/hooks/interface'
 import AddOrUpdate from './add-or-update.vue'
-
+import { useRouterStore } from '@/store/modules/router'
 const state: IHooksOptions = reactive({
 	dataListUrl: 'new/business/news/page',
 	deleteUrl: 'new/business/news',

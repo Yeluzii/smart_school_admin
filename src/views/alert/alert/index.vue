@@ -39,8 +39,15 @@
 		>
 			<el-table-column type="selection" header-align="center" align="center" width="50"></el-table-column>
 			<el-table-column prop="alertName" label="告警名称" header-align="center" align="center"></el-table-column>
-			<el-table-column prop="tenantName" label="租户名称" header-align="center" align="center"></el-table-column>
-			<el-table-column prop="status" label="状态" header-align="center" align="center"></el-table-column>
+			<el-table-column prop="deviceName" label="设备" header-align="center" align="center"></el-table-column>
+			<el-table-column prop="status" label="状态" header-align="center" align="center">
+				<template #default="scope">
+					<el-tag :type="scope.row.status === 1 ? 'success' : 'info'">
+						{{ scope.row.status === 1 ? '启用' : '禁止' }}
+					</el-tag>
+				</template>
+			</el-table-column>
+
 			<el-table-column prop="alertLevel" label="告警级别" header-align="center" align="center">
 				<template #default="scope">
 					<el-tag :type="scope.row.alertLevel === 0 ? 'success' : scope.row.alertLevel === 1 ? 'warning' : 'danger'">
@@ -113,6 +120,12 @@ const getAlertLevelTagType = level => {
 		2: 'danger' // 红色 - 严重警告
 	}
 	return typeMap[level] || 'info'
+}
+const getStatusText = status => {
+	return status === 1 ? '启用' : '禁止'
+}
+const getStatusTagType = status => {
+	return status === 1 ? 'success' : 'info'
 }
 
 const { getDataList, selectionChangeHandle, sizeChangeHandle, currentChangeHandle, deleteBatchHandle, downloadHandle, reset } = useCrud(state)

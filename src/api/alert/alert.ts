@@ -11,3 +11,6 @@ export const useAlertSubmitApi = (dataForm: any) => {
 		return service.post('/sys/alert', dataForm)
 	}
 }
+export const getDevicesByTenantId = (tenantId: number) => {
+	return service.get('/iot/device/alear/' + tenantId)
+}
