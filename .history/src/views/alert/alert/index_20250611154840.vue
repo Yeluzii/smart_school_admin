@@ -51,7 +51,6 @@
       <el-table-column label="操作" fixed="right" header-align="center" align="center" width="150">
         <template #default="scope">
           <el-button type="primary" link @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
-          <el-button type="primary" link @click="showAddDeviceHandle(scope.row.id)">关联设备</el-button>
           <el-button type="primary" link @click="deleteBatchHandle(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
@@ -64,19 +63,14 @@
     <!-- 弹窗, 新增 / 修改 -->
     <add-or-update v-if="addOrUpdateVisible" ref="addOrUpdateRef" v-model:visible="addOrUpdateVisible"
       @refreshDataList="getDataList"></add-or-update>
-    <el-drawer v-if="addDeviceTitle" v-model="addDeviceVisible" :title="addDeviceTitle" :size="1000"
-      :close-on-press-escape="false">
-      <add-device v-if="addDeviceVisible" :key="'device_' + alertId" :alert-id="alertId"></add-device>
-    </el-drawer>
   </el-card>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" name="AlertAlertIndex">
 import { useCrud } from '@/hooks'
 import { reactive, nextTick, ref } from 'vue'
 import { IHooksOptions } from '@/hooks/interface'
 import AddOrUpdate from './add-or-update.vue'
-import AddDevice from './add-device.vue'
 const getAlertTagType = (level) => {
   const map = {
     0: 'success', // 绿色
@@ -112,14 +106,7 @@ const addOrUpdateHandle = (id?: number) => {
   addOrUpdateVisible.value = true
   nextTick(() => addOrUpdateRef.value.init(id))
 }
-const alertId = ref()
-const addDeviceVisible = ref(false)
-const addDeviceTitle = ref()
-const showAddDeviceHandle = (id?: number) => {
-  console.log('showAddDeviceHandle', id)
-  alertId.value = id
-  addDeviceVisible.value = true
-  addDeviceTitle.value = '设备关联'
-}
+
+
 const { getDataList, selectionChangeHandle, sizeChangeHandle, currentChangeHandle, deleteBatchHandle, downloadHandle, reset } = useCrud(state)
 </script>

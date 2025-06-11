@@ -17,7 +17,7 @@
 			<el-table-column prop="id" header-align="center" align="center" label="ID"></el-table-column>
 			<el-table-column prop="name" header-align="center" align="center" label="设备名称"></el-table-column>
 			<el-table-column prop="uid" label="设备id" header-align="center" align="center"></el-table-column>
-			<el-table-column prop="alertName" label="告警名称" header-align="center" align="center"></el-table-column>
+			<el-table-column prop="alert_name" label="告警名称" header-align="center" align="center"></el-table-column>
 			<el-table-column prop="alertLevel" label="告警级别" header-align="center" align="center">
 				<template #default="scope">
 					<!-- 添加空值检查 -->
@@ -28,8 +28,8 @@
 					<span v-else>--</span>
 				</template>
 			</el-table-column>
-			<el-table-column prop="createTime" label="告警时间" header-align="center" align="center"></el-table-column>
-			<el-table-column prop="alertInfo" label="告警信息" header-align="center" align="center"></el-table-column>
+			<el-table-column prop="create_time" label="告警时间" header-align="center" align="center"></el-table-column>
+			<el-table-column prop="alert_info" label="告警信息" header-align="center" align="center"></el-table-column>
 		</el-table>
 		<el-pagination :current-page="state.page" :page-sizes="state.pageSizes" :page-size="state.limit" :total="state.total"
 			layout="total, sizes, prev, pager, next, jumper" @size-change="sizeChangeHandle"

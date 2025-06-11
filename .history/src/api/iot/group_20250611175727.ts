@@ -41,6 +41,6 @@ export const deleteDeviceData = (groupId: number, deviceId: number) => {
 }
 export const deleteRoleData = (groupId: number, roleId: number) => {
 	console.log('groupId', groupId)
-	console.log('roleId', roleId)
+	console.log('deviceId', roleId)
 	return service.delete(`new/iot/group/role/delete?groupId=${groupId}&roleId=${roleId}`)
 }
