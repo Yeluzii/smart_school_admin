@@ -34,13 +34,6 @@ export const useGroupRoleSubmitApi = (dataForm: any) => {
 		return service.post('new/iot/group/role', dataForm)
 	}
 }
-export const deleteDeviceData = (groupId: number, deviceId: number) => {
-	console.log('groupId', groupId)
-	console.log('deviceId', deviceId)
-	return service.delete(`new/iot/group/device/delete?groupId=${groupId}&deviceId=${deviceId}`)
-}
-export const deleteRoleData = (groupId: number, roleId: number) => {
-	console.log('groupId', groupId)
-	console.log('roleId', roleId)
-	return service.delete(`new/iot/group/role/delete?groupId=${groupId}&roleId=${roleId}`)
+export const deleteData = (id: number) => {
+	return service.delete('new/iot/group/device/delete/' + id)
 }

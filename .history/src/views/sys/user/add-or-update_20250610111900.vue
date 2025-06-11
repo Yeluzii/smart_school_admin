@@ -65,10 +65,10 @@ const roleList = ref<any[]>([])
 const dataFormRef = ref()
 
 const dataForm = reactive({
-	id: 0,
+	id: '',
 	username: '',
 	realName: '',
-	orgId: 0,
+	orgId: '',
 	password: '',
 	gender: 0,
 	email: '',
@@ -80,7 +80,7 @@ const dataForm = reactive({
 
 const init = (id?: number) => {
 	visible.value = true
-	dataForm.id = 0
+	dataForm.id = ''
 
 	// 重置表单数据
 	if (dataFormRef.value) {

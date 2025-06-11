@@ -12,9 +12,7 @@
       </el-form-item>
       <el-form-item label="告警级别 0：提醒通知 1：轻微问题 2：严重警告" prop="alertLevel">
         <el-select v-model="dataForm.alertLevel" placeholder="告警级别 0：提醒通知 1：轻微问题 2：严重警告">
-          <el-option label="提醒通知" value="0"></el-option>
-          <el-option label="轻微问题" value="1"></el-option>
-          <el-option label="严重警告" value="2"></el-option>
+          <el-option label="请选择" :value="0"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="备注信息" prop="notes">
@@ -44,7 +42,10 @@ const dataForm = reactive({
   tenantId: '',
   status: '',
   alertLevel: '',
+  createTime: '',
   notes: '',
+  updateTime: '',
+  deleted: ''
 })
 
 const init = (id?: number) => {

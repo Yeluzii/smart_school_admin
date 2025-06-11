@@ -71,7 +71,7 @@
   </el-card>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" name="AlertAlertIndex">
 import { useCrud } from '@/hooks'
 import { reactive, nextTick, ref } from 'vue'
 import { IHooksOptions } from '@/hooks/interface'

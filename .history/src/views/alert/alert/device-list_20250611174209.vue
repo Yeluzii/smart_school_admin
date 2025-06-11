@@ -11,21 +11,19 @@
   <el-card>
     <el-space>
       <el-space>
-        <el-button icon="Delete" plain type="danger" v-auth="'iot:group:role:delete'"
-          @click="deleteBatchHandle()">批量删除</el-button>
+        <el-button icon="Delete" plain type="danger" @click="deleteBatchHandle()">批量删除</el-button>
       </el-space>
     </el-space>
     <el-table v-loading="state.dataListLoading" :data="state.dataList" border class="layout-table" show-overflow-tooltip
       @selection-change="selectionChangeHandle">
       <el-table-column type="selection" header-align="center" align="center" width="50"></el-table-column>
       <el-table-column prop="id" label="id" header-align="center" align="center"></el-table-column>
-      <el-table-column prop="name" label="角色名" header-align="center" align="center"></el-table-column>
-      <el-table-column prop="roleCode" label="角色编码" header-align="center" align="center"></el-table-column>
-      <el-table-column prop="remark" label="说明" header-align="center" align="center"></el-table-column>
+      <el-table-column prop="code" label="设备编码" header-align="center" align="center"></el-table-column>
+      <el-table-column prop="name" label="名称" header-align="center" align="center"></el-table-column>
+      <el-table-column prop="uid" label="设备标识" header-align="center" align="center"></el-table-column>
       <el-table-column label="操作" fixed="right" header-align="center" align="center" width="150">
         <template #default="scope">
-          <el-button type="primary" v-auth="'iot:group:role:delete'" link
-            @click="deleteRoleData(props.groupId, scope.row.id)">删除</el-button>
+          <el-button type="primary" link @click="">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -42,9 +40,9 @@ import { useCrud } from '@/hooks'
 import { reactive, ref } from 'vue'
 import { IHooksOptions } from '@/hooks/interface'
 import { defineProps } from 'vue';
-import { deleteRoleData } from '@/api/iot/group'
+import { deleteData } from '@/api/iot/group'
 const props = defineProps({
-  groupId: {
+  alertId: {
     type: Number,
     required: true
   }
@@ -52,8 +50,7 @@ const props = defineProps({
 
 const state: IHooksOptions = reactive({
   isPage: false,
-  dataListUrl: 'new/iot/group/role/get/' + props.groupId,
-  deleteUrl: 'new/iot/group/role',
+  dataListUrl: 'new/sys/alert/get/device/' + props.alertId,
   queryForm: {
   }
 })

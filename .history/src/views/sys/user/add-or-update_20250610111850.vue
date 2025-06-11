@@ -6,9 +6,9 @@
 					<el-form-item prop="username" label="用户名">
 						<el-input v-model="dataForm.username" placeholder="用户名"></el-input>
 					</el-form-item>
-					<!-- <el-form-item prop="orgId" label="所属机构">
+					<el-form-item prop="orgId" label="所属机构">
 						<ma-org-select v-model="dataForm.orgId" placeholder="请选择"></ma-org-select>
-					</el-form-item> -->
+					</el-form-item>
 					<el-form-item prop="mobile" label="手机号">
 						<el-input v-model="dataForm.mobile" placeholder="手机号"></el-input>
 					</el-form-item>
@@ -65,10 +65,10 @@ const roleList = ref<any[]>([])
 const dataFormRef = ref()
 
 const dataForm = reactive({
-	id: 0,
+	id: '',
 	username: '',
 	realName: '',
-	orgId: 0,
+	orgId: '',
 	password: '',
 	gender: 0,
 	email: '',
@@ -80,7 +80,7 @@ const dataForm = reactive({
 
 const init = (id?: number) => {
 	visible.value = true
-	dataForm.id = 0
+	dataForm.id = ''
 
 	// 重置表单数据
 	if (dataFormRef.value) {

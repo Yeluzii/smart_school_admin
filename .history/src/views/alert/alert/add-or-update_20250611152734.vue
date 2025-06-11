@@ -44,7 +44,10 @@ const dataForm = reactive({
   tenantId: '',
   status: '',
   alertLevel: '',
+  createTime: '',
   notes: '',
+  updateTime: '',
+  deleted: ''
 })
 
 const init = (id?: number) => {

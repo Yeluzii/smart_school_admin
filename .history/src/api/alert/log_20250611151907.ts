@@ -1,13 +1,13 @@
 import service from '@/utils/request'
 
 export const useLogApi = (id: number) => {
-	return service.get('new/alert/log/' + id)
+	return service.get('/alert/log/' + id)
 }
 
 export const useLogSubmitApi = (dataForm: any) => {
 	if (dataForm.id) {
-		return service.put('new/alert/log', dataForm)
+		return service.put('/alert/log', dataForm)
 	} else {
-		return service.post('new/alert/log', dataForm)
+		return service.post('/alert/log', dataForm)
 	}
 }
