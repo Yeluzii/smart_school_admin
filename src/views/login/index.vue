@@ -1,7 +1,7 @@
 <template>
 	<div class="login-container">
 		<div class="login-intro">
-			<h1>{{ $t('app.title') }}</h1>
+			<h1 style="font-size: 50px">{{ $t('app.title') }}</h1>
 			<div class="desc">
 				{{ $t('app.description') }}
 			</div>
@@ -9,8 +9,7 @@
 		</div>
 		<div class="login-form">
 			<div class="login-title">
-				<el-button link :class="loginType === 'account' ? 'account' : ''" @click="loginSwitch('account')">{{
-					$t('app.signIn') }}</el-button>
+				<el-button link :class="loginType === 'account' ? 'account' : ''" @click="loginSwitch('account')">{{ $t('app.signIn') }}</el-button>
 				<!-- <el-button link :class="loginType === 'mobile' ? 'account' : ''" @click="loginSwitch('mobile')">{{ $t('app.mobileSignIn') }}</el-button> -->
 			</div>
 			<account v-if="loginType === 'account'" />
